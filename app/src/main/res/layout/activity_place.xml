@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".PlaceActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ВАШЕ ПОТОЧНЕ МІСЦЕЗНАХОДЖЕННЯ"
+        android:gravity="center"
+        android:textSize="14pt"
+        android:padding="8dp"
+        android:background="@color/view_background"/>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/example_map_place_preview"/>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/show_on_map_button"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
+        android:text="Показати місце на плані"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:padding="16dp"/>
+
+    <Button
+        android:id="@+id/show_on_ar_button"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="40dp"
+        android:layout_gravity="center"
+        android:text="Прокласти маршрут в AR"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:padding="16dp"/>
+
+</LinearLayout>
