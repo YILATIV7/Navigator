@@ -17,6 +17,7 @@ public class NFCScanActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(NFCScanActivity.this, PlaceActivity.class));
+                finish();
             }
         });
 

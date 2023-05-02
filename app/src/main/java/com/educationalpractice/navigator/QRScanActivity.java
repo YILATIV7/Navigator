@@ -13,6 +13,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -71,7 +72,9 @@ public class QRScanActivity extends AppCompatActivity {
     }
 
     public void QRCodeHandler(String qrCodeText) {
-        Context context = this;
+        startActivity(new Intent(QRScanActivity.this, PlaceActivity.class));
+        finish();
+        /*Context context = this;
         runOnUiThread(() -> Toast.makeText(context, qrCodeText, Toast.LENGTH_LONG).show());
 
         new Thread(() -> {
@@ -81,7 +84,7 @@ public class QRScanActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             isProcess = false;
-        }).start();
+        }).start();*/
     }
 
     void bindPreview(@NonNull ProcessCameraProvider cameraProvider) {
