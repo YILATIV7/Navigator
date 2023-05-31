@@ -72,10 +72,26 @@ public class QRScanActivity extends AppCompatActivity {
     }
 
     public void QRCodeHandler(String qrCodeText) {
-        startActivity(new Intent(QRScanActivity.this, PlaceActivity.class));
+        //startActivity(new Intent(QRScanActivity.this, PlaceActivity.class));
         finish();
-        /*Context context = this;
-        runOnUiThread(() -> Toast.makeText(context, qrCodeText, Toast.LENGTH_LONG).show());
+        Context context = this;
+
+        String packageName = "";
+        if (qrCodeText.equals("https://t.me/Viktoriag16")) {
+            packageName = "com.educationalpractice.navigator.ar.id1";
+        } else if (qrCodeText.equals("https://instagram.com/uks.vin?igshid=YTY2NzY3YTc=")) {
+            packageName = "com.educationalpractice.navigator.ar.id2";
+        } else {
+            runOnUiThread(() -> Toast.makeText(context, "UNDEFINED_QR_CODE", Toast.LENGTH_LONG).show());
+        }
+
+        Intent intent = getPackageManager().getLaunchIntentForPackage(packageName);
+        if (intent != null) {
+            startActivity(intent);
+        } else {
+            String pkgName = packageName;
+            runOnUiThread(() -> Toast.makeText(context, "PACKAGE_NOT_FOUND:\n" + pkgName, Toast.LENGTH_LONG).show());
+        }
 
         new Thread(() -> {
             try {
@@ -84,7 +100,7 @@ public class QRScanActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             isProcess = false;
-        }).start();*/
+        }).start();
     }
 
     void bindPreview(@NonNull ProcessCameraProvider cameraProvider) {
