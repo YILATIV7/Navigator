@@ -2,10 +2,16 @@ package com.educationalpractice.navigator;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.camera.core.Camera;
+import androidx.camera.core.CameraControl;
+import androidx.camera.core.CameraInfo;
+import androidx.camera.core.CameraInfoUnavailableException;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.Preview;
+import androidx.camera.core.TorchState;
 import androidx.camera.extensions.HdrImageCaptureExtender;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
@@ -15,15 +21,23 @@ import androidx.core.content.ContextCompat;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraManager;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 
 public class QRScanActivity extends AppCompatActivity {
+
+    private boolean isTorchOn = false;
+    private Camera camera = null;
 
     private final int REQUEST_CODE_PERMISSIONS = 5555;
     private final String[] REQUIRED_PERMISSIONS = new String[] { "android.permission.CAMERA" };
@@ -127,7 +141,23 @@ public class QRScanActivity extends AppCompatActivity {
                 .build();
         preview.setSurfaceProvider(mPreviewView.createSurfaceProvider());
 
-        cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalysis, imageCapture);
+        camera = cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalysis, imageCapture);
+    }
+
+    public void toggleTorch(View view) {
+        CameraControl cameraControl = camera.getCameraControl();
+        CameraInfo cameraInfo = camera.getCameraInfo();
+
+        // Check if the camera supports flash
+        if (cameraInfo.hasFlashUnit()) {
+            FloatingActionButton fab = findViewById(R.id.fabFlashlight);
+            isTorchOn = !isTorchOn;
+            fab.setImageDrawable(AppCompatResources
+                    .getDrawable(this, isTorchOn
+                            ? R.drawable.baseline_flashlight_on_24
+                            : R.drawable.baseline_flashlight_off_24));
+            cameraControl.enableTorch(isTorchOn);
+        }
     }
 
     private void startCamera() {
