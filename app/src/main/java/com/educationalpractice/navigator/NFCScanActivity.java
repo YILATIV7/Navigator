@@ -13,14 +13,20 @@ public class NFCScanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nfc_scan);
 
-        findViewById(R.id.nfc_scan_imageview).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(NFCScanActivity.this, PlaceActivity.class));
-                finish();
-            }
-        });
-
         findViewById(R.id.cancelButton).setOnClickListener(v -> finish());
+    }
+
+    public void goToPlaceId1(View view) {
+        Intent intent = new Intent(NFCScanActivity.this, PlaceActivity.class);
+        intent.putExtra("PLACE_ID", 1);
+        startActivity(intent);
+        finish();
+    }
+
+    public void goToPlaceId2(View view) {
+        Intent intent = new Intent(NFCScanActivity.this, PlaceActivity.class);
+        intent.putExtra("PLACE_ID", 2);
+        startActivity(intent);
+        finish();
     }
 }
