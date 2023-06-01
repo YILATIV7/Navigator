@@ -21,7 +21,10 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.scanQRButton).setOnClickListener(v ->
                 startActivity(new Intent(MainActivity.this, QRScanActivity.class)));
 
-        findViewById(R.id.viewMapButton).setOnClickListener(b ->
-                startActivity(new Intent(MainActivity.this, MapActivity.class)));
+        findViewById(R.id.viewMapButton).setOnClickListener(b -> {
+            Intent intent = new Intent(MainActivity.this, MapActivity.class);
+            intent.putExtra("FILE_NAME", "default_map.png");
+            startActivity(intent);
+        });
     }
 }

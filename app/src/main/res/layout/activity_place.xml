@@ -11,44 +11,44 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ВАШЕ ПОТОЧНЕ МІСЦЕЗНАХОДЖЕННЯ"
+        android:background="@color/view_background"
         android:gravity="center"
-        android:textSize="14pt"
         android:padding="8dp"
-        android:background="@color/view_background"/>
+        android:text="ВАШЕ ПОТОЧНЕ МІСЦЕЗНАХОДЖЕННЯ"
+        android:textSize="14pt" />
 
     <View
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
     <ImageView
+        android:id="@+id/current_place_view"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/example_map_place_preview"/>
+        android:layout_height="200dp" />
 
     <View
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
     <Button
         android:id="@+id/show_on_map_button"
-        android:layout_marginTop="16dp"
-        android:layout_gravity="center"
-        android:text="Показати місце на плані"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:padding="16dp"/>
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:padding="16dp"
+        android:text="Показати місце на плані" />
 
     <Button
         android:id="@+id/show_on_ar_button"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="40dp"
-        android:layout_gravity="center"
-        android:text="Прокласти маршрут в AR"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:padding="16dp"/>
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="40dp"
+        android:padding="16dp"
+        android:text="Прокласти маршрут в AR" />
 
 </LinearLayout>

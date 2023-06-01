@@ -9,6 +9,8 @@
         <package android:name="com.educationalpractice.navigator.ar" />
         <package android:name="com.educationalpractice.navigator.ar.id1" />
         <package android:name="com.educationalpractice.navigator.ar.id2" />
+        <package android:name="com.educationalpractice.navigator.ar.id3" />
+        <package android:name="com.educationalpractice.navigator.ar.id4" />
     </queries>
 
     <application

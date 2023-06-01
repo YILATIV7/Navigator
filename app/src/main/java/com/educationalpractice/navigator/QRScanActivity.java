@@ -86,31 +86,28 @@ public class QRScanActivity extends AppCompatActivity {
     }
 
     public void QRCodeHandler(String qrCodeText) {
-        //startActivity(new Intent(QRScanActivity.this, PlaceActivity.class));
-        finish();
         Context context = this;
 
-        String packageName = "";
+        int placeId = 0;
         if (qrCodeText.equals("https://t.me/Viktoriag16")) {
-            packageName = "com.educationalpractice.navigator.ar.id1";
+            placeId = 1; // room
         } else if (qrCodeText.equals("https://instagram.com/uks.vin?igshid=YTY2NzY3YTc=")) {
-            packageName = "com.educationalpractice.navigator.ar.id2";
+            placeId = 2; // near kitchen
         } else {
             runOnUiThread(() -> Toast.makeText(context, "UNDEFINED_QR_CODE", Toast.LENGTH_LONG).show());
         }
 
-        Intent intent = getPackageManager().getLaunchIntentForPackage(packageName);
-        if (intent != null) {
+        if (placeId != 0) {
+            Intent intent = new Intent(QRScanActivity.this, PlaceActivity.class);
+            intent.putExtra("PLACE_ID", placeId);
             startActivity(intent);
-        } else {
-            String pkgName = packageName;
-            runOnUiThread(() -> Toast.makeText(context, "PACKAGE_NOT_FOUND:\n" + pkgName, Toast.LENGTH_LONG).show());
+            finish();
         }
 
         new Thread(() -> {
             try {
                 Thread.sleep(SUSPENSION_TIME);
-            }catch (InterruptedException e) {
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             isProcess = false;
